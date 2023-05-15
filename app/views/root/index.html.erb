@@ -1,1 +1,10 @@
+<% content_for :for_head do %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<% end %>
+
 Welcome to the MTG Commander Turn Timer
+
+<div class="timer">
+</div>
+
+<%= javascript_include_tag 'main.js', :type => "module" %>
