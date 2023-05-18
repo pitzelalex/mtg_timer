@@ -10,20 +10,28 @@ export default class Timer {
     };
 
     this.interval = null;
-    this.remainingSeconds = 90;
+    this.remainingSeconds = 0;
 
     this.updateInterfaceControlls();
 
     this.updateInterfaceTime();
 
-    this.start();
-
     this.el.control.addEventListener("click", () => {
-      // TODO: add in the code
+      if (this.interval === null) {
+        this.start();
+      } else {
+        this.stop();
+      }
     })
 
     this.el.reset.addEventListener("click", () => {
-      // TODO: add in the code
+      const inputMinutes = prompt("Enter number of minutes:");
+
+      if (inputMinutes < 60) {
+        this.stop();
+        this.remainingSeconds = inputMinutes * 60;
+        this.updateInterfaceTime();
+      }
     })
   }
 
@@ -58,6 +66,14 @@ export default class Timer {
         this.stop();
       }
     }, 1000);
+
+    this.updateInterfaceControlls();
+  }
+
+  stop() {
+    clearInterval(this.interval);
+
+    this.interval = null;
 
     this.updateInterfaceControlls();
   }
