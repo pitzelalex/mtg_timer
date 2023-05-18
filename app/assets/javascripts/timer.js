@@ -1,16 +1,16 @@
 export default class Timer {
-  constructor(root) {
-    root.innerHTML = Timer.getHTML();
+  constructor(root, player, duration) {
+    root.innerHTML = Timer.getHTML(player);
 
     this.el = {
       minutes: root.querySelector(".timer__part--minutes"),
       seconds: root.querySelector(".timer__part--seconds"),
       control: root.querySelector(".timer__btn--control"),
-      reset: root.querySelector(".timer__btn--reset")
+      reset: root.querySelector(".timer__btn--reset"),
     };
 
     this.interval = null;
-    this.remainingSeconds = 0;
+    this.remainingSeconds = duration;
 
     this.updateInterfaceControlls();
 
@@ -78,8 +78,9 @@ export default class Timer {
     this.updateInterfaceControlls();
   }
 
-  static getHTML() {
+  static getHTML(player) {
     return `
+    <span class="player">Player ${player} - </span>
     <span class="timer__part timer__part--minutes">00</span>
     <span class="timer__part">:</span>
     <span class="timer__part timer__part--seconds">00</span>

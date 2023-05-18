@@ -4,7 +4,13 @@
 
 Welcome to the MTG Commander Turn Timer
 
-<div class="timer">
-</div>
+<%= content_tag :div, id: 'details', data: {players: @players, duration: @duration} do %>
+<% end %>
+
+<% @players.times.with_index do |index| %>
+  <span class="timer-<%= index + 1 %>">
+  </span>
+<% end %>
+
 
 <%= javascript_include_tag 'main.js', :type => "module" %>
